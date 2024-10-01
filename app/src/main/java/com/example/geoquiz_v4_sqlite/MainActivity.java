@@ -74,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
                 int indice = 0;
                 mQuestoesDb.addQuestao(mBancoDeQuestoes[indice++]);
                 mQuestoesDb.addQuestao(mBancoDeQuestoes[indice++]);
+
             }
         });
 
