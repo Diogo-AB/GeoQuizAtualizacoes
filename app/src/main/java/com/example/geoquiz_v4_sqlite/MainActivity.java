@@ -24,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
     private Button mBotaoVerdadeiro;
     private Button mBotaoFalso;
     private Button mBotaoProximo;
-    private Button mBotaoCadastra;
     private Button mBotaoMostra;
     private Button mBotaoDeleta;
 
@@ -66,6 +65,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 verificaResposta(true);
+                /*
+                  Acesso ao SQLite
+                */
+                if (mQuestoesDb == null) {
+                    mQuestoesDb = new QuestaoDB(getBaseContext());
+                }
+                int indice = 0;
+                mQuestoesDb.addQuestao(mBancoDeQuestoes[indice++]);
+                mQuestoesDb.addQuestao(mBancoDeQuestoes[indice++]);
             }
         });
 
@@ -74,6 +82,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 verificaResposta(false);
+                /*
+                  Acesso ao SQLite
+                */
+                if (mQuestoesDb == null) {
+                    mQuestoesDb = new QuestaoDB(getBaseContext());
+                }
+                int indice = 0;
+                mQuestoesDb.addQuestao(mBancoDeQuestoes[indice++]);
+                mQuestoesDb.addQuestao(mBancoDeQuestoes[indice++]);
             }
         });
         mBotaoProximo = (Button) findViewById(R.id.botao_proximo);
@@ -96,22 +113,6 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = ColaActivity.novoIntent(MainActivity.this, respostaEVerdadeira);
                 //startActivity(intent);
                 startActivityForResult(intent, CODIGO_REQUISICAO_COLA);
-            }
-        });
-
-        mBotaoCadastra = (Button) findViewById(R.id.botao_cadastra);
-        mBotaoCadastra.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                /*
-                  Acesso ao SQLite
-                */
-                if (mQuestoesDb == null) {
-                    mQuestoesDb = new QuestaoDB(getBaseContext());
-                }
-                int indice = 0;
-                mQuestoesDb.addQuestao(mBancoDeQuestoes[indice++]);
-                mQuestoesDb.addQuestao(mBancoDeQuestoes[indice++]);
             }
         });
 
